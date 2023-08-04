@@ -1,0 +1,78 @@
+# Spring Boot configuration
+spring:
+  profiles:
+    active: dev
+  application:
+    name: feedback
+  # Database
+  datasource:
+      driver-class-name: org.mariadb.jdbc.Driver
+      #sql-script-encoding: utf-8
+      spring.sql.init.encoding: utf-8
+      hikari:
+        connection-timeout: 5000
+        validation-timeout: 1000
+        maximum-pool-size: 40
+        minimum-idle: 10
+        connection-test-query: select upper('Hello World') as item1
+      main:
+      allow-bean-definition-overriding: true
+      jpa:
+      properties:
+        hibernate:
+          temp: 
+            use_jdbc_metadata_defaults: false
+          id:
+            new_generator_mappings: false
+          format_sql: true
+          ddl-auto: create
+      show-sql: true
+      database-platform: org.hibernate.dialect.MariaDB103Dialect
+      defer-datasource-initialization: true
+  # JPA properties
+  jpa:
+    hibernate:
+      ddl-auto: update # When you launch the application for the first time - switch "none" at "create"
+    show-sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MariaDB103Dialect
+    open-in-view: false
+    generate-ddl: true
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+      
+spring.mvc.view.prefix: /WEB-INF/jsp/
+spring.mvc.view.suffix: .jsp
+server.servlet.jsp.init-parameters.development: true
+
+logging:
+  config: classpath:logback.xml
+  level:
+    org.springframework: ERROR
+    org.hibernate: INFO
+    com.kt.feedback: INFO
+
+# Server configuration
+server:
+  port: 8088 #set your port
+  tomcat:
+    additional-tld-skip-patterns: "*.jar"
+
+validation:
+  charset: "utf-8"
+
+---
+spring.config.activate.on-profile: dev
+spring:
+  datasource:
+      url: jdbc:mariadb://58.120.227.138:3306/kt_edu_assist
+      username: root
+      password: sbwpdlvmffjtm1!
+
+
+   
+ 
