@@ -12,8 +12,8 @@ public class HelloController {
 	
 	@RequestMapping("/")
 	String home() {
-		log.info("LOG INFO TEST");
-		log.error("ERROR INFO TEST");
+		log.info("LOG INFO2");
+		log.error("ERROR INFO2");
 		return "Hello World!";
 	}
 	//public static void main(String[] args) {
